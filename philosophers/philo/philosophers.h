@@ -11,7 +11,13 @@
 /* ************************************************************************** */
 
 #ifndef PHILISOPHERS
+# define PHILISOPHERS
 #include<stdio.h>
+# include<pthread.h>
+# include<sys/time.h>
+
+typedef struct timeval t_timeval;
+
 typedef struct s_info_philo
 {
 	int	nb_philo;
@@ -21,7 +27,21 @@ typedef struct s_info_philo
 	int	nb_meals;
 }t_info_philo;
 
-# define PHILISOPHERS
+typedef struct s_philo
+{
+	size_t			name;
+	int				*stop;
+	long			nb_meals;
+	t_info_philo	*infos;
+	pthread_mutex_t	*fork[2];
+	pthread_mutex_t	*print;
+	pthread_mutex_t	lunch;
+	size_t			last_meal;
+	struct timeval	ts;
+	pthread_t		thread;
+}	t_philo;
+# define LEFT 0
+# define RIGHT 1
 # define STR_ISSPACE "\t\n\v\f\r "
 # define STR_DIGITS "0123456789"
 # define STR_ERROR1 "you have to enter 5 or 6 paramaters\n"
