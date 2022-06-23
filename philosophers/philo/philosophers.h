@@ -15,7 +15,8 @@
 #include<stdio.h>
 # include<pthread.h>
 # include<sys/time.h>
-
+#include<stdlib.h>
+#include<unistd.h>
 typedef struct timeval t_timeval;
 
 typedef struct s_info_philo
