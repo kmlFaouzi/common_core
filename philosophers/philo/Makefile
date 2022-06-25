@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kml <kml@student.42.fr>                    +#+  +:+       +#+         #
+#    By: kfaouzi <kfaouzi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 13:18:05 by kml               #+#    #+#              #
-#    Updated: 2022/06/20 16:00:22 by kml              ###   ########.fr        #
+#    Updated: 2022/06/25 08:43:12 by kfaouzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c parser.c
+SRCS = main.c parser.c traitement.c threads.c
 OBJS = $(SRCS:%.c=%.o)
 NAME = philo
 FLAG_TREAD = -lpthread

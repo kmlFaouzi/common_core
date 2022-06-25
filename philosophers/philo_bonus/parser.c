@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfaouzi <kfaouzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 13:20:14 by kml               #+#    #+#             */
-/*   Updated: 2022/06/25 08:43:57 by kfaouzi          ###   ########.fr       */
+/*   Created: 2022/06/25 09:25:36 by kfaouzi           #+#    #+#             */
+/*   Updated: 2022/06/25 09:26:46 by kfaouzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"philosophers.h"
+#include"philo_bonus.h"
 
 int	ft_strchr(char c, char *str)
 {
@@ -63,14 +63,4 @@ int	check_error(int ac, char **av)
 	else
 		return (printf(STR_ERROR1), 0);
 	return (1);
-}
-
-void	insert_infos(t_info_philo *philo, int ac, char **av)
-{
-	philo->nb_philo = ft_atoi(av[1]);
-	philo->tm_die = ft_atoi(av[2]);
-	philo->tm_eat = ft_atoi(av[3]);
-	philo->tm_sleep = ft_atoi(av[4]);
-	if (ac == 6)
-		philo->nb_meals = ft_atoi(av[5]);
 }
