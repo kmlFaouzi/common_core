@@ -6,11 +6,11 @@
 #    By: kfaouzi <kfaouzi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 13:18:05 by kml               #+#    #+#              #
-#    Updated: 2022/06/25 08:43:12 by kfaouzi          ###   ########.fr        #
+#    Updated: 2022/06/25 09:51:07 by kfaouzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c parser.c traitement.c threads.c
+SRCS = main.c parser.c traitement.c threads.c forks.c time.c 
 OBJS = $(SRCS:%.c=%.o)
 NAME = philo
 FLAG_TREAD = -lpthread

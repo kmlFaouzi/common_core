@@ -6,7 +6,7 @@
 /*   By: kfaouzi <kfaouzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 08:15:39 by kfaouzi           #+#    #+#             */
-/*   Updated: 2022/06/25 08:47:00 by kfaouzi          ###   ########.fr       */
+/*   Updated: 2022/06/25 09:58:21 by kfaouzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ size_t	get_time(void)
 	return (milliseconds);
 }
 
-unsigned long	get_ts(struct timeval ts)
+unsigned long	get_ts(t_timeval
+ ts)
 {
 	t_timeval	tv;
 
