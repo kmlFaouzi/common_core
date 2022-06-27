@@ -6,7 +6,7 @@
 /*   By: kfaouzi <kfaouzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 09:14:33 by kfaouzi           #+#    #+#             */
-/*   Updated: 2022/06/25 09:27:08 by kfaouzi          ###   ########.fr       */
+/*   Updated: 2022/06/27 14:09:40 by kfaouzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define STR_ERROR2 "you have to enter a positive numbers!\n"
 # define CHAR_PLUS '+'
 # define CHAR_MINES '-'
+# define ERR 2
+# define IS_DEAD 0
+# define ATE_ENOUGH 1
 
 typedef struct s_utils
 {
@@ -59,5 +62,24 @@ typedef struct s_philo
 	int				pid;
 }	t_philo;
 
-int	check_error(int ac, char **av);
+bool			check_args(int argc, char **argv, t_utils *pars);
+char			*ft_itoa(int n);
+int				ft_strlen(const char *str);
+char			*ft_strjoin(char const *s1, char const *s2);
+unsigned int	get_len(unsigned int nb, unsigned int *pow);
+size_t			get_time(void);
+void			ft_sleep(size_t ms);
+unsigned long	get_ts(struct timeval ts);
+int				is_dead(t_philo *philo);
+void			unlock_sync(sem_t *sync, unsigned int nb_philos);
+int				launch_children(t_utils *utils, sem_t *print);
+int				watch_children(t_philo *philos, unsigned int nb_philos);
+void			process(t_philo *philo);
+void			*live(void *arg);
+int				set_philos(t_philo *philos, t_utils *utils, sem_t *print);
+int				fall_asleep(t_philo *philo);
+int				eat(t_philo *philo);
+void			kill_children(t_philo *philos, unsigned int nb_philos);
+int				take_forks(t_philo *philo);
+sem_t			*init_forks(t_utils *utils);
 #endif

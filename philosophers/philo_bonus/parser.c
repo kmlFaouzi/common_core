@@ -6,61 +6,74 @@
 /*   By: kfaouzi <kfaouzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 09:25:36 by kfaouzi           #+#    #+#             */
-/*   Updated: 2022/06/25 09:26:46 by kfaouzi          ###   ########.fr       */
+/*   Updated: 2022/06/27 14:01:50 by kfaouzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philo_bonus.h"
 
-int	ft_strchr(char c, char *str)
+bool	only_numbers(char *str)
 {
-	int	exist;
-	int	i;
-
-	i = -1;
-	exist = 0;
-	while (str[++i])
-		if (str[i] == c)
-			exist = 1;
-	return (exist);
-}
-
-int	ft_atoi(char *str)
-{
-	int		i;
-	long	nb;
-	int		sign;
+	size_t	i;
 
 	i = 0;
-	sign = 1;
-	while (ft_strchr(str[i], STR_ISSPACE))
-		i++;
-	if (str[i] == CHAR_MINES || str[i] == CHAR_PLUS)
+	while (str[i])
 	{
-		if (str[i] == CHAR_MINES)
-			sign = -1;
+		if (str[i] < 48 || str[i] > 57)
+			return (false);
 		i++;
 	}
-	nb = 0;
-	while (str[i] >= STR_DIGITS[0] && str[i] <= STR_DIGITS[9])
-	{
-		nb = nb * 10 + str[i] - STR_DIGITS[0];
-		i++;
-	}
-	return (nb * sign);
+	return (true);
 }
 
-int	check_error(int ac, char **av)
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+unsigned int	pars_nbr(char *str)
+{
+	size_t			i;
+	unsigned int	nbr;
+
+	i = 0;
+	nbr = 0;
+	while (str[i])
+	{
+		nbr *= 10;
+		nbr += str[i] - 48;
+		i++;
+	}
+	return (nbr);
+}
+
+bool	check_args(int argc, char **argv, t_utils *pars)
 {
 	int	i;
 
-	if (ac == 5 || ac == 6)
+	i = 1;
+	while (i < argc)
 	{
-		i = 0;
-		if (ft_atoi(av[++i]) <= 0)
-			return (printf(STR_ERROR2), 0);
+		if (ft_strlen(argv[i]) > 11 || !only_numbers(argv[i])
+			|| (ft_strlen(argv[i]) == 11
+				&& ft_strcmp(argv[i], "42949667295") > 0))
+			return (false);
+		i++;
 	}
+	pars->nb_philo = pars_nbr(argv[1]);
+	pars->tt_die = pars_nbr(argv[2]);
+	pars->tt_eat = pars_nbr(argv[3]);
+	pars->tt_sleep = pars_nbr(argv[4]);
+	if (argc == 6)
+		pars->nb_meals = pars_nbr(argv[5]);
 	else
-		return (printf(STR_ERROR1), 0);
-	return (1);
+		pars->nb_meals = -1;
+	if (!pars->nb_philo)
+		return (false);
+	return (true);
 }
